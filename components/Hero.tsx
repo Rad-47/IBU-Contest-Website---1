@@ -76,6 +76,21 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        {/* Deadline banner */}
+        <motion.div
+          {...f(0.05)}
+          className="flex items-center gap-3 bg-[rgba(255,204,0,0.08)] border border-[rgba(255,204,0,0.35)] rounded-2xl px-5 py-3"
+        >
+          <svg viewBox="0 0 20 20" className="w-4 h-4 text-[#ffcc00] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+            <rect x="2" y="3" width="16" height="15" rx="2.5" />
+            <path d="M2 8h16M7 1v3M13 1v3" />
+          </svg>
+          <span className="font-space text-[12px] tracking-[0.18em] uppercase">
+            <span className="text-[rgba(240,244,255,0.55)]">Deadline&nbsp;&nbsp;</span>
+            <span className="text-[#ffcc00] font-semibold">April 17 – April 24, 2026</span>
+          </span>
+        </motion.div>
+
         {/* Presented by */}
         <motion.p {...f(0.1)} className="font-space text-[11px] tracking-[0.15em] uppercase text-[rgba(240,244,255,0.45)]">
           Blayz Technologies Inc. Presents

@@ -27,7 +27,7 @@ const steps = [
 
 const infoItems = [
   { icon: Mail, label: 'Email', value: EMAIL },
-  { icon: Calendar, label: 'Deadline', value: 'April 24, 2026' },
+  { icon: Calendar, label: 'Deadline', value: 'April 17 – April 24, 2026' },
   { icon: FileText, label: 'Format', value: 'Any — PDF, Word, Slides, Video, or combination' },
   { icon: HelpCircle, label: 'Questions', value: EMAIL },
 ]
