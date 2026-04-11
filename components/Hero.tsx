@@ -135,23 +135,25 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Subheading */}
-        <motion.p
-          {...f(0.3)}
-          className="font-chakra font-semibold text-[rgba(240,244,255,0.9)] max-w-2xl"
-          style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', lineHeight: 1.6 }}
-        >
-          Any Background. Any Major. Bold Thinking Has No Prerequisites.
-        </motion.p>
-
         {/* Body */}
         <motion.p
-          {...f(0.4)}
-          className="font-chakra text-[rgba(240,244,255,0.65)] max-w-xl leading-[1.75]"
-          style={{ fontSize: 'clamp(16px, 1.5vw, 18px)' }}
+          {...f(0.3)}
+          className="font-chakra text-[rgba(240,244,255,0.9)] max-w-2xl"
+          style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', lineHeight: 1.6 }}
         >
-          A real startup. A live product. An open field — no rules on how you contribute,
-          only on how bold you're willing to be.
+          This competition is about finding the boldest innovators in business and tech — people who can think creatively, move fast, and make a real impact on a live product.
+        </motion.p>
+
+        {/* Subheading */}
+        <motion.p
+          {...f(0.4)}
+          className="font-chakra italic font-bold text-[rgba(240,244,255,0.65)] max-w-xl leading-[1.75]"
+          style={{
+            fontSize: 'clamp(16px, 1.5vw, 18px)',
+            textShadow: '0 0 18px rgba(0,212,255,0.45), 0 0 40px rgba(0,255,136,0.2)',
+          }}
+        >
+          Any Background. Any Major. Bold Thinking Has No Prerequisites.
         </motion.p>
 
         {/* CTAs */}
