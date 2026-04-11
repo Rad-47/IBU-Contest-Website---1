@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/rad-7438/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python3 scripts/search.py \"gaming esports competition dark OLED aurora glassmorphism motion-driven landing page\" --design-system -p \"FanLinc IBU Campus Innovation Challenge 2026\" -f markdown)",
+      "Bash(python3 scripts/search.py \"animation aurora dark OLED scroll reveal\" --domain ux -n 5)",
+      "Bash(python3 scripts/search.py \"dark OLED neon gradient glassmorphism\" --domain style -n 3)",
+      "Bash(python3 scripts/search.py \"scroll reveal animation performance\" --stack nextjs)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(npx tsc:*)",
+      "Bash(python3 scripts/search.py \"mobile app screenshot showcase phone mockup carousel animation\" --domain style -n 3)"
+    ]
+  }
+}
