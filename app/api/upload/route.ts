@@ -1,76 +1,27 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { google } from 'googleapis'
-import { Readable } from 'stream'
+import { put } from '@vercel/blob'
+import { NextResponse } from 'next/server'
 
-const FOLDER_ID = '1GkwuB7KvnLsxpbWjotHj8AnjxRkRvFxN'
+export async function POST(request: Request) {
+  const formData = await request.formData()
+  const file = formData.get('file') as File | null
+  const name = (formData.get('name') as string | null) ?? 'Unknown'
+  const studentId = (formData.get('studentId') as string | null) ?? 'Unknown'
+  const major = (formData.get('major') as string | null) ?? 'Unknown'
 
-function bufferToStream(buffer: Buffer): Readable {
-  const readable = new Readable({ read() {} })
-  readable.push(buffer)
-  readable.push(null)
-  return readable
-}
-
-export async function POST(req: NextRequest) {
-  try {
-    const formData = await req.formData()
-    const file = formData.get('file') as File | null
-    const studentName = (formData.get('studentName') as string | null) ?? ''
-
-    if (!file) {
-      return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
-    }
-
-    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
-
-    if (!clientEmail || !privateKey) {
-      return NextResponse.json(
-        {
-          error:
-            'Upload service is not configured yet. Please email your submission to rad@fanlinc.ai',
-        },
-        { status: 503 }
-      )
-    }
-
-    const auth = new google.auth.GoogleAuth({
-      credentials: { client_email: clientEmail, private_key: privateKey },
-      scopes: ['https://www.googleapis.com/auth/drive.file'],
-    })
-
-    const drive = google.drive({ version: 'v3', auth })
-
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-    const stream = bufferToStream(buffer)
-
-    const driveName = studentName.trim()
-      ? `[${studentName.trim()}] ${file.name}`
-      : file.name
-
-    const response = await drive.files.create({
-      requestBody: {
-        name: driveName,
-        parents: [FOLDER_ID],
-      },
-      media: {
-        mimeType: file.type || 'application/octet-stream',
-        body: stream,
-      },
-      fields: 'id,name',
-    })
-
-    return NextResponse.json({
-      success: true,
-      fileId: response.data.id,
-      fileName: response.data.name,
-    })
-  } catch (error) {
-    console.error('Drive upload error:', error)
-    return NextResponse.json(
-      { error: 'Upload failed. Please try again or email rad@fanlinc.ai' },
-      { status: 500 }
-    )
+  if (!file || file.size === 0) {
+    return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
   }
+
+  if (file.size > 52_428_800) {
+    return NextResponse.json({ error: 'File must be under 50 MB.' }, { status: 413 })
+  }
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+  const safeName = name.replace(/\s+/g, '_')
+  const safeId = studentId.replace(/\s+/g, '_')
+  const filename = `submissions/${timestamp}_${safeName}_${safeId}_${file.name}`
+
+  const blob = await put(filename, file, { access: 'private' })
+
+  return NextResponse.json({ url: blob.url, filename: blob.pathname })
 }
