@@ -25,6 +25,12 @@ const screens = [
     accent: '#00d4ff',
   },
   {
+    title: 'Fan × Player Live',
+    desc: 'Watch real fans go live with actual OHL players — unscripted, unfiltered, and happening right now on FanLinc.',
+    src: '/screenshots/screen-11.png',
+    accent: '#ff0090',
+  },
+  {
     title: 'Top Fan Posts',
     desc: 'Discover the highest-viewed fan content on the platform. See what resonates with the community.',
     src: '/screenshots/screen-03.png',
