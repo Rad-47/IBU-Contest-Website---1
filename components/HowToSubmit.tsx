@@ -27,7 +27,7 @@ const steps = [
 
 const infoItems = [
   { icon: Mail, label: 'Email', value: EMAIL },
-  { icon: Calendar, label: 'Deadline', value: 'April 17 – April 24, 2026' },
+  { icon: Calendar, label: 'Deadline', value: 'April 20 – April 27, 2026' },
   { icon: FileText, label: 'Format', value: 'PDF or Word. For any other format (Slides, Video, etc.) email rad@fanlinc.ai' },
   { icon: HelpCircle, label: 'Questions', value: EMAIL },
 ]

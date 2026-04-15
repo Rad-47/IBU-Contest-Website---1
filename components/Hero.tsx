@@ -87,7 +87,7 @@ export default function Hero() {
           </svg>
           <span className="font-space text-[12px] tracking-[0.18em] uppercase">
             <span className="text-[rgba(240,244,255,0.55)]">Deadline&nbsp;&nbsp;</span>
-            <span className="text-[#ffcc00] font-semibold">April 17 – April 24, 2026</span>
+            <span className="text-[#ffcc00] font-semibold">April 20 – April 27, 2026</span>
           </span>
         </motion.div>
 
