@@ -18,7 +18,7 @@ const phases = [
     label: 'Use It Like a Social Platform',
     time: 'Ongoing daily',
     heading: 'Post. Engage. Show Up.',
-    body: 'Post reels, images, and text. Like, comment, and share other fans\' and players\' content. Use the Search section to find and follow other fans and friends already on the platform — the more you connect, the stronger your feed gets. Tip: type a name in the search bar and tap Search — you\'ll see different options and a list of profiles to follow. Join player-hosted live sessions and Q&As in real time. Build daily visit streaks — consistency is rewarded on FanLinc just like in any real job. Every action earns loyalty points and raises your activity score.',
+    body: 'Post reels, images, and text. Like, comment, and share other fans\' and players\' content. Use the Search section to find and follow other fans and friends already on the platform — the more you connect, the stronger your feed gets. Tip: type a name in the search bar and tap Search — you\'ll see different options and a list of profiles to follow. Join player-hosted live sessions and Q&As in real time. Keep an eye on the Live section — FanLinc will be hosting 3 live sessions on April 22nd. Join those sessions for participation and Q&A opportunities. Build daily visit streaks — consistency is rewarded on FanLinc just like in any real job. Every action earns loyalty points and raises your activity score.',
     tags: ['Post reels & images', 'Like & comment', 'Join live sessions', 'Build daily streaks', '+points per action'],
     color: '#00d4ff',
   },
