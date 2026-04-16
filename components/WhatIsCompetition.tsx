@@ -98,7 +98,7 @@ export default function WhatIsCompetition() {
               <motion.div
                 key={stat.label}
                 variants={itemVariants}
-                className="glass-card rounded-xl p-6 text-center flex flex-col gap-3 cursor-default"
+                className="card-lift glass-card rounded-xl p-6 text-center flex flex-col gap-3 cursor-default"
               >
                 <p
                   className="font-russo text-brand-green leading-tight"

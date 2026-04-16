@@ -17,23 +17,33 @@ import FAQ from '@/components/FAQ'
 import FooterCTA from '@/components/FooterCTA'
 import Footer from '@/components/Footer'
 
+function GlowDivider() {
+  return <div className="glow-divider mx-auto max-w-4xl my-6" aria-hidden="true" />
+}
+
 export default function Home() {
   return (
     <SmoothScroll>
       <Navbar />
       <main>
         <Hero />
+        <GlowDivider />
         <WhatIsFanLinc />
         <AppPreview />
+        <GlowDivider />
         <WhatIsCompetition />
         <OpenFieldPrinciple />
+        <GlowDivider />
         <StudentJourney />
         <IdeaCategories />
+        <GlowDivider />
         <WhoIsItFor />
         <StudentBenefits />
+        <GlowDivider />
         <PrizeSection />
         <SelectionCriteria />
         <CompetitionRules />
+        <GlowDivider />
         <HowToSubmit />
         <FAQ />
         <FooterCTA />

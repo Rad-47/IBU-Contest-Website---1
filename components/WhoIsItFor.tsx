@@ -95,7 +95,7 @@ export default function WhoIsItFor() {
               <motion.div
                 key={aud.title}
                 variants={itemVariants}
-                className="rounded-2xl p-6 flex flex-col gap-4 cursor-default border transition-all duration-300 hover:-translate-y-1 bg-[#0e0e1a] border-white/[0.07] hover:border-white/20"
+                className="card-lift rounded-2xl p-6 flex flex-col gap-4 cursor-default border bg-[#0e0e1a] border-white/[0.07]"
               >
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/[0.06]"

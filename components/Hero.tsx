@@ -36,22 +36,73 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black pt-20 pb-20"
     >
       {/* Aurora background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {/* Orbs — bigger & more vivid */}
         <div
-          className={`aurora-orb w-[700px] h-[700px] -top-60 -left-40 ${!reduced ? 'animate-aurora-1' : ''}`}
-          style={{ background: 'radial-gradient(circle, rgba(0,255,136,0.18) 0%, transparent 70%)' }}
+          className={`aurora-orb w-[800px] h-[800px] -top-72 -left-40 ${!reduced ? 'animate-aurora-1' : ''}`}
+          style={{ background: 'radial-gradient(circle, rgba(0,255,136,0.22) 0%, transparent 65%)' }}
         />
         <div
-          className={`aurora-orb w-[600px] h-[600px] -top-40 -right-40 ${!reduced ? 'animate-aurora-2' : ''}`}
-          style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.14) 0%, transparent 70%)' }}
+          className={`aurora-orb w-[700px] h-[700px] -top-40 -right-40 ${!reduced ? 'animate-aurora-2' : ''}`}
+          style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 65%)' }}
         />
         <div
-          className={`aurora-orb w-[500px] h-[500px] bottom-0 left-1/2 -translate-x-1/2 ${!reduced ? 'animate-aurora-3' : ''}`}
-          style={{ background: 'radial-gradient(circle, rgba(255,0,144,0.10) 0%, transparent 70%)' }}
+          className={`aurora-orb w-[600px] h-[600px] bottom-0 left-1/2 -translate-x-1/2 ${!reduced ? 'animate-aurora-3' : ''}`}
+          style={{ background: 'radial-gradient(circle, rgba(255,0,144,0.14) 0%, transparent 65%)' }}
         />
+        {/* Extra deep-purple orb for more colour depth */}
+        <div
+          className={`aurora-orb w-[500px] h-[500px] top-1/2 left-1/4 ${!reduced ? 'animate-aurora-2' : ''}`}
+          style={{ background: 'radial-gradient(circle, rgba(123,45,142,0.12) 0%, transparent 65%)', animationDelay: '1.5s' }}
+        />
+
+        {/* Tron perspective grid floor */}
+        {!reduced && <div className="hero-grid" />}
+
+        {/* Scanlines */}
+        {!reduced && <div className="scanlines-overlay opacity-60" />}
+
+        {/* Floating 3D geometric shapes */}
+        {!reduced && (
+          <>
+            <div
+              className="geo-shape animate-float w-20 h-20 top-[18%] left-[8%] rounded-md border-brand-green"
+              style={{ transform: 'rotate(22deg)', animationDuration: '7s' }}
+            />
+            <div
+              className="geo-shape animate-float-delay w-12 h-12 top-[30%] right-[10%] rounded-sm border-brand-cyan"
+              style={{ transform: 'rotate(-15deg)', animationDuration: '5.5s', borderColor: '#00d4ff' }}
+            />
+            <div
+              className="geo-float w-8 h-8 bottom-[25%] left-[15%] animate-float"
+              style={{
+                position: 'absolute',
+                border: '1px solid rgba(255,0,144,0.2)',
+                borderRadius: '50%',
+                animationDuration: '8s',
+                animationDelay: '0.8s',
+              }}
+            />
+            <div
+              className="geo-float animate-float-delay"
+              style={{
+                position: 'absolute',
+                top: '60%',
+                right: '18%',
+                width: '60px',
+                height: '60px',
+                border: '1px solid rgba(255,204,0,0.15)',
+                borderRadius: '4px',
+                transform: 'rotate(45deg)',
+                animationDuration: '6s',
+              }}
+            />
+          </>
+        )}
+
         {/* Noise overlay */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -66,7 +117,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6">
         {/* Live badge */}
-        <motion.div {...f(0)} className="flex items-center gap-2 bg-white/5 border border-brand-green/30 rounded-full px-4 py-2">
+        <motion.div {...f(0)} className="flex items-center gap-2 bg-white/5 border border-brand-green/40 rounded-full px-4 py-2" style={{ boxShadow: '0 0 20px rgba(0,255,136,0.15), inset 0 0 12px rgba(0,255,136,0.05)' }}>
           <span
             className={`w-2 h-2 rounded-full bg-brand-green flex-shrink-0 ${!reduced ? 'animate-pulse-dot' : ''}`}
             aria-hidden="true"
