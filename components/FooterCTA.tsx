@@ -21,8 +21,19 @@ export default function FooterCTA() {
 
   return (
     <section className="relative bg-black py-32 sm:py-40 overflow-hidden">
-      {/* Aurora radial background */}
+      {/* Animated gradient mesh */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Drifting colour mesh */}
+        {!reduced && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0,255,136,0.04) 0%, rgba(0,212,255,0.06) 25%, rgba(255,0,144,0.04) 50%, rgba(255,204,0,0.03) 75%, rgba(0,255,136,0.04) 100%)',
+              backgroundSize: '400% 400%',
+              animation: 'gradient-drift 10s ease infinite',
+            }}
+          />
+        )}
         <div
           className={`aurora-orb w-[900px] h-[900px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${!reduced ? 'animate-aurora-1' : ''}`}
           style={{ background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, rgba(0,212,255,0.05) 40%, transparent 70%)' }}

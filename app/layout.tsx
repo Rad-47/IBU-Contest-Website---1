@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { russoOne, chakraPetch, spaceMono } from '@/lib/fonts'
 import CustomCursor from '@/components/CustomCursor'
+import ScrollProgressBar from '@/components/ScrollProgressBar'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${russoOne.variable} ${chakraPetch.variable} ${spaceMono.variable} font-chakra bg-black text-[#f0f4ff] antialiased`}
       >
+        <ScrollProgressBar />
         <CustomCursor />
         {children}
       </body>

@@ -116,14 +116,36 @@ export default function OpenFieldPrinciple() {
               </motion.div>
 
               {/* Pill tags */}
-              <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mt-2">
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+                }}
+                className="flex flex-wrap gap-3 mt-2"
+              >
                 {pills.map((pill) => (
-                  <span
+                  <motion.span
                     key={pill}
-                    className="font-chakra font-medium text-[13px] text-[rgba(240,244,255,0.7)] bg-white/5 border border-white/10 rounded-full px-4 py-2"
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8, y: 12 },
+                      visible: {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] },
+                      },
+                    }}
+                    whileHover={reduced ? undefined : {
+                      scale: 1.06,
+                      borderColor: 'rgba(0,255,136,0.5)',
+                      color: 'rgba(240,244,255,0.95)',
+                      boxShadow: '0 0 18px rgba(0,255,136,0.15)',
+                      transition: { duration: 0.18 },
+                    }}
+                    className="font-chakra font-medium text-[13px] text-[rgba(240,244,255,0.7)] bg-white/5 border border-white/10 rounded-full px-4 py-2 cursor-default"
                   >
                     {pill}
-                  </span>
+                  </motion.span>
                 ))}
               </motion.div>
             </div>

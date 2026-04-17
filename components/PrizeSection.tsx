@@ -78,8 +78,9 @@ export default function PrizeSection() {
           </motion.span>
 
           {/* Main prize card */}
-          <motion.div
-            variants={itemVariants}
+          <TiltCard
+            maxTilt={3}
+            spotlightColor="rgba(255,204,0,0.07)"
             className="relative rounded-2xl bg-[#0e0e1a] border border-white/[0.07] overflow-hidden"
           >
             {/* Gold top border */}
@@ -118,7 +119,7 @@ export default function PrizeSection() {
                 internship because of their unique idea and work.
               </p>
             </div>
-          </motion.div>
+          </TiltCard>
 
           {/* Prize items grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

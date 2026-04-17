@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
+import TiltCard from '@/components/TiltCard'
 
 const stats = [
   { label: 'Live Product', sub: 'Real app. Real users. Not a simulation.' },
@@ -35,8 +36,9 @@ export default function WhatIsCompetition() {
           className="flex flex-col gap-12"
         >
           {/* Main card */}
-          <motion.div
-            variants={itemVariants}
+          <TiltCard
+            maxTilt={3}
+            spotlightColor="rgba(0,255,136,0.06)"
             className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0e0e1a]"
           >
             {/* Green top gradient border */}
@@ -87,18 +89,16 @@ export default function WhatIsCompetition() {
                 Technologies and lead the actual implementation of their idea inside a live product.
               </motion.p>
             </div>
-          </motion.div>
+          </TiltCard>
 
           {/* Stat cards */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-5"
-          >
-            {stats.map((stat) => (
-              <motion.div
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {stats.map((stat, i) => (
+              <TiltCard
                 key={stat.label}
-                variants={itemVariants}
-                className="card-lift glass-card rounded-xl p-6 text-center flex flex-col gap-3 cursor-default"
+                delay={0.1 + i * 0.09}
+                spotlightColor="rgba(0,212,255,0.07)"
+                className="rounded-xl p-6 text-center flex flex-col gap-3 cursor-default bg-white/[0.04] backdrop-blur-[12px] border border-white/[0.08] hover:border-white/[0.18] transition-colors duration-300"
               >
                 <p
                   className="font-russo text-brand-green leading-tight"
@@ -109,9 +109,9 @@ export default function WhatIsCompetition() {
                 <p className="font-chakra text-[rgba(240,244,255,0.6)] text-[14px] leading-[1.6]">
                   {stat.sub}
                 </p>
-              </motion.div>
+              </TiltCard>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

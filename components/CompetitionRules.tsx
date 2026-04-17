@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 
 const rules = [
@@ -62,6 +62,7 @@ function RuleItem({
 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.5 })
+  const [hovered, setHovered] = useState(false)
 
   return (
     <motion.div
@@ -69,20 +70,54 @@ function RuleItem({
       initial={reduced ? false : { opacity: 0, x: -24 }}
       animate={inView || reduced ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.55, delay: index * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="flex items-start gap-6 py-6 border-b border-white/[0.06] last:border-b-0 group"
+      onHoverStart={() => !reduced && setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="relative flex items-start gap-6 py-6 border-b border-white/[0.06] last:border-b-0 cursor-default overflow-hidden"
     >
+      {/* Sliding green left accent */}
+      <motion.div
+        className="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-green origin-top"
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: hovered ? 1 : 0 }}
+        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+        aria-hidden="true"
+      />
+
+      {/* Row background flush */}
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+        style={{ background: 'linear-gradient(90deg, rgba(0,255,136,0.04) 0%, transparent 60%)' }}
+        aria-hidden="true"
+      />
+
       {/* Number */}
-      <span className="flex-shrink-0 font-space text-[11px] tracking-widest text-brand-green w-7 mt-0.5">
+      <motion.span
+        className="relative flex-shrink-0 font-space text-[11px] tracking-widest w-7 mt-0.5 pl-2"
+        animate={{
+          color: hovered ? '#00ff88' : '#00ff88',
+          textShadow: hovered
+            ? '0 0 10px rgba(0,255,136,0.9), 0 0 20px rgba(0,255,136,0.5)'
+            : '0 0 0px transparent',
+        }}
+        transition={{ duration: 0.2 }}
+      >
         {String(index + 1).padStart(2, '0')}
-      </span>
+      </motion.span>
 
       {/* Rule text */}
-      <p
-        className="font-chakra text-[rgba(240,244,255,0.8)] leading-[1.75] group-hover:text-[rgba(240,244,255,0.95)] transition-colors duration-200"
+      <motion.p
+        className="relative font-chakra leading-[1.75]"
+        animate={{
+          color: hovered ? 'rgba(240,244,255,0.95)' : 'rgba(240,244,255,0.8)',
+        }}
+        transition={{ duration: 0.2 }}
         style={{ fontSize: 'clamp(15px, 1.2vw, 17px)' }}
       >
         {rule}
-      </p>
+      </motion.p>
     </motion.div>
   )
 }

@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Users, Video, Zap, Star, BarChart2, Trophy } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const features = [
   {
@@ -125,10 +126,11 @@ export default function WhatIsFanLinc() {
           {/* Right — feature grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {features.map((feat, i) => (
-              <motion.div
+              <TiltCard
                 key={feat.title}
-                variants={itemVariants}
-                className="glass-card rounded-xl p-5 cursor-default"
+                delay={0.1 + i * 0.06}
+                maxTilt={5}
+                className="rounded-xl p-5 cursor-default bg-white/[0.04] backdrop-blur-[12px] border border-white/[0.08] hover:border-white/[0.18] transition-colors duration-300"
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center">
@@ -143,7 +145,7 @@ export default function WhatIsFanLinc() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </motion.div>
