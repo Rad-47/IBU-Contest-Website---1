@@ -15,6 +15,8 @@ interface TiltCardProps {
   delay?: number
   maxTilt?: number
   once?: boolean
+  spotlight?: boolean
+  spotlightColor?: string
 }
 
 export default function TiltCard({
@@ -23,9 +25,12 @@ export default function TiltCard({
   delay = 0,
   maxTilt = 7,
   once = true,
+  spotlight = true,
+  spotlightColor = 'rgba(0,255,136,0.09)',
 }: TiltCardProps) {
   const reduced = useReducedMotion()
   const wrapRef = useRef<HTMLDivElement>(null)
+  const spotRef = useRef<HTMLDivElement>(null)
   const inView = useInView(wrapRef, { once, amount: 0.1 })
 
   const rotXRaw = useMotionValue(0)
@@ -37,21 +42,32 @@ export default function TiltCard({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (reduced || !wrapRef.current) return
       const r = wrapRef.current.getBoundingClientRect()
-      rotYRaw.set(((e.clientX - r.left) / r.width - 0.5) * maxTilt * 2)
-      rotXRaw.set(((e.clientY - r.top) / r.height - 0.5) * -maxTilt * 2)
+      const nx = (e.clientX - r.left) / r.width
+      const ny = (e.clientY - r.top) / r.height
+      rotYRaw.set((nx - 0.5) * maxTilt * 2)
+      rotXRaw.set((ny - 0.5) * -maxTilt * 2)
+
+      if (spotlight && spotRef.current) {
+        spotRef.current.style.setProperty('--spot-x', `${nx * 100}%`)
+        spotRef.current.style.setProperty('--spot-y', `${ny * 100}%`)
+        spotRef.current.style.opacity = '1'
+      }
     },
-    [reduced, rotXRaw, rotYRaw, maxTilt]
+    [reduced, rotXRaw, rotYRaw, maxTilt, spotlight]
   )
 
   const handleMouseLeave = useCallback(() => {
     rotXRaw.set(0)
     rotYRaw.set(0)
-  }, [rotXRaw, rotYRaw])
+    if (spotlight && spotRef.current) {
+      spotRef.current.style.opacity = '0'
+    }
+  }, [rotXRaw, rotYRaw, spotlight])
 
   return (
     <div ref={wrapRef} style={{ perspective: '900px' }}>
       <motion.div
-        className={className}
+        className={`relative ${className}`}
         initial={reduced ? false : { opacity: 0, y: 32 }}
         animate={
           reduced
@@ -65,15 +81,24 @@ export default function TiltCard({
           delay: reduced ? 0 : delay,
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
-        style={
-          reduced
-            ? undefined
-            : { rotateX: rotX, rotateY: rotY }
-        }
+        style={reduced ? undefined : { rotateX: rotX, rotateY: rotY }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
         {children}
+        {spotlight && !reduced && (
+          <div
+            ref={spotRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 rounded-[inherit]"
+            style={{
+              opacity: 0,
+              zIndex: 10,
+              transition: 'opacity 0.35s ease',
+              background: `radial-gradient(380px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${spotlightColor}, transparent 65%)`,
+            }}
+          />
+        )}
       </motion.div>
     </div>
   )

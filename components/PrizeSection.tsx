@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Rocket, Users, Linkedin, Award, Zap, BarChart2 } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const prizeItems = [
   {
@@ -121,11 +122,12 @@ export default function PrizeSection() {
 
           {/* Prize items grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {prizeItems.map((item) => (
-              <motion.div
+            {prizeItems.map((item, i) => (
+              <TiltCard
                 key={item.title}
-                variants={itemVariants}
-                className="rounded-2xl bg-[#0e0e1a] border border-white/[0.07] p-6 flex flex-col gap-3 cursor-default transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-[0_0_30px_rgba(255,204,0,0.06)]"
+                delay={0.1 + i * 0.07}
+                spotlightColor="rgba(255,204,0,0.07)"
+                className="rounded-2xl bg-[#0e0e1a] border border-white/[0.07] p-6 flex flex-col gap-3 cursor-default transition-colors duration-300 hover:border-brand-gold/30 hover:shadow-[0_0_30px_rgba(255,204,0,0.06)]"
               >
                 <div className="w-10 h-10 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
                   <item.icon size={20} className="text-brand-gold" aria-hidden="true" />
@@ -136,7 +138,7 @@ export default function PrizeSection() {
                 <p className="font-chakra text-[rgba(240,244,255,0.65)] text-[14px] leading-[1.7]">
                   {item.desc}
                 </p>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </motion.div>

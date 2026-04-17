@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
+import MagneticButton from '@/components/MagneticButton'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -93,6 +94,7 @@ export default function FooterCTA() {
               </span>
             </a>
             {/* Google Play */}
+            <MagneticButton>
             <a
               href="https://play.google.com/store/apps/details?id=com.fanlinc&hl=en_CA"
               target="_blank"
@@ -111,6 +113,7 @@ export default function FooterCTA() {
                 <span className="text-[16px] font-bold leading-none">Google Play</span>
               </span>
             </a>
+            </MagneticButton>
             <a
               href="#rules"
               onClick={(e) => {

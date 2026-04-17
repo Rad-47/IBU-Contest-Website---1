@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { BookOpen, Rocket, ArrowUpRight, Users, Briefcase, TrendingUp } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const benefits = [
   {
@@ -84,11 +85,12 @@ export default function StudentBenefits() {
 
           {/* Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {benefits.map((ben) => (
-              <motion.div
+            {benefits.map((ben, i) => (
+              <TiltCard
                 key={ben.title}
-                variants={itemVariants}
-                className="glass-card rounded-2xl p-6 flex flex-col gap-4 cursor-default"
+                delay={0.1 + i * 0.07}
+                spotlightColor={`${ben.accent}12`}
+                className="rounded-2xl p-6 flex flex-col gap-4 cursor-default bg-white/[0.04] backdrop-blur-[12px] border border-white/[0.08] hover:border-white/[0.18] transition-colors duration-250"
               >
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -107,7 +109,7 @@ export default function StudentBenefits() {
                     {ben.desc}
                   </p>
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </motion.div>
