@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Briefcase, Megaphone, BarChart2, Code, Palette, Video } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const audiences = [
   {
@@ -91,11 +92,11 @@ export default function WhoIsItFor() {
 
           {/* Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {audiences.map((aud) => (
-              <motion.div
+            {audiences.map((aud, i) => (
+              <TiltCard
                 key={aud.title}
-                variants={itemVariants}
-                className="card-lift rounded-2xl p-6 flex flex-col gap-4 cursor-default border bg-[#0e0e1a] border-white/[0.07]"
+                delay={0.15 + i * 0.08}
+                className="rounded-2xl p-6 flex flex-col gap-4 cursor-default border bg-[#0e0e1a] border-white/[0.07] hover:border-white/20 hover:shadow-[0_20px_56px_rgba(0,255,136,0.07)] transition-colors duration-300"
               >
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/[0.06]"
@@ -118,7 +119,7 @@ export default function WhoIsItFor() {
                     {aud.desc}
                   </p>
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </motion.div>

@@ -15,6 +15,7 @@ import CompetitionRules from '@/components/CompetitionRules'
 import HowToSubmit from '@/components/HowToSubmit'
 import FAQ from '@/components/FAQ'
 import FooterCTA from '@/components/FooterCTA'
+import FooterMarquee from '@/components/FooterMarquee'
 import Footer from '@/components/Footer'
 
 function GlowDivider() {
@@ -48,6 +49,7 @@ export default function Home() {
         <FAQ />
         <FooterCTA />
       </main>
+      <FooterMarquee />
       <Footer />
     </SmoothScroll>
   )

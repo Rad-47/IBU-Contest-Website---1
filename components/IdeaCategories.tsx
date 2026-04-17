@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Settings2, TrendingUp, Handshake, Target, Camera, Lightbulb } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const categories = [
   {
@@ -98,11 +99,11 @@ export default function IdeaCategories() {
 
           {/* Cards grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {categories.map((cat) => (
-              <motion.div
+            {categories.map((cat, i) => (
+              <TiltCard
                 key={cat.title}
-                variants={itemVariants}
-                className="relative rounded-2xl bg-[#0e0e1a] border border-white/[0.07] overflow-hidden group cursor-default transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_60px_rgba(0,0,0,0.5)]"
+                delay={0.15 + i * 0.08}
+                className="relative rounded-2xl bg-[#0e0e1a] border border-white/[0.07] overflow-hidden group cursor-default hover:border-white/20 hover:shadow-[0_24px_60px_rgba(0,0,0,0.4)] transition-colors duration-300"
               >
                 {/* Bottom gradient accent */}
                 <div
@@ -138,7 +139,7 @@ export default function IdeaCategories() {
                     {cat.desc}
                   </p>
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </motion.div>

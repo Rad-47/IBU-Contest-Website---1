@@ -111,10 +111,19 @@ function FAQItem({
   reduced: boolean
 }) {
   return (
-    <div className="border-b border-white/[0.07] last:border-b-0">
+    <div className="border-b border-white/[0.07] last:border-b-0 relative">
+      {/* Animated left border */}
+      <motion.div
+        initial={false}
+        animate={{ scaleY: isOpen ? 1 : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: reduced ? 0 : 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+        style={{ originY: 0, position: 'absolute', left: 0, top: 12, bottom: 12, width: 3, borderRadius: 9999, background: 'linear-gradient(to bottom, #00ff88, #00d4ff)' }}
+        aria-hidden="true"
+      />
+
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 py-6 text-left cursor-pointer group"
+        className="w-full flex items-center justify-between gap-4 py-6 pl-4 text-left cursor-pointer group"
         aria-expanded={isOpen}
       >
         <span
@@ -144,7 +153,7 @@ function FAQItem({
             style={{ overflow: 'hidden' }}
           >
             <p
-              className="font-chakra text-[rgba(240,244,255,0.7)] leading-[1.75] pb-6 pr-8"
+              className="font-chakra text-[rgba(240,244,255,0.7)] leading-[1.75] pb-6 pl-4 pr-8"
               style={{ fontSize: 'clamp(14px, 1.1vw, 16px)' }}
             >
               {answer}

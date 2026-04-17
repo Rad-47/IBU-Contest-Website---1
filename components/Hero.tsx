@@ -214,6 +214,7 @@ export default function Hero() {
             href="https://apps.apple.com/us/app/fanlinc/id6755227235"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor="cta"
             className="inline-flex items-center gap-3 bg-white text-black font-chakra font-bold px-6 py-3.5 rounded-xl hover:scale-[1.03] active:scale-[0.97] transition-transform duration-150 cursor-pointer min-w-[180px]"
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6 flex-shrink-0 fill-black" aria-hidden="true">
@@ -230,6 +231,7 @@ export default function Hero() {
             href="https://play.google.com/store/apps/details?id=com.fanlinc&hl=en_CA"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor="cta"
             className="inline-flex items-center gap-3 bg-white text-black font-chakra font-bold px-6 py-3.5 rounded-xl hover:scale-[1.03] active:scale-[0.97] transition-transform duration-150 cursor-pointer min-w-[180px]"
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6 flex-shrink-0" aria-hidden="true">
